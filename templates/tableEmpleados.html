@@ -1,0 +1,46 @@
+{% extends "layout.html" %} {%block content%} {%from "_macro.html" import
+render_field%}
+<link rel="stylesheet" href="../static/css/tableEmpleados.css" />
+<div class="container">
+  <div class="row">
+    <h3>Alumnos</h3>
+    <h4><a href="index.html"></a></h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Telefono</th>
+          <th>Direccion</th>
+          <th>Sueldo</th>
+          <th>Modificar</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for emplead in empleadoss%}
+        <tr>
+          <td>{{emplead.nombre}}</td>
+          <td>{{emplead.email}}</td>
+          <td>{{emplead.telefono}}</td>
+          <td>{{emplead.direccion}}</td>
+          <td>{{emplead.sueldo}}</td>
+          <td>
+            <a
+              href="eliminar.html?id={{emplead.id}}"
+              class="btn btb-danger"
+            ></a>
+          </td>
+          <td>
+            <a
+              href="modificar.html?id={{emplead.id}}"
+              class="btn btb-warning"
+            ></a>
+          </td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}
