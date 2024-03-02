@@ -4,6 +4,7 @@ from wtforms import validators
  
 
 class EmpleadosForm(Form):
+    id=IntegerField('id')
     nombre=StringField('nombre',[
         validators.DataRequired(message='El campo es requerido'),
     ])

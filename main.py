@@ -34,6 +34,53 @@ def TablaEmpleados():
     emplead=Empleados.query.all()
     return render_template("tableEmpleados.html",empleadoss=emplead)
 
+@app.route("/eliminar",methods=["GET","POST"])
+def eliminar():
+    empleados_form=forms.EmpleadosForm(request.form)
+    if request.method=='GET':
+        id=request.args.get('id')
+        empleado1=db.session.query(Empleados).filter(Empleados.id==id).first()
+        empleados_form.id.data=request.args.get('id')
+        empleados_form.nombre.data=empleado1.nombre
+        empleados_form.email.data=empleado1.email
+        empleados_form.telefono.data=empleado1.telefono
+        empleados_form.direccion.data=empleado1.direccion
+        empleados_form.sueldo.data=empleado1.sueldo
+    if request.method=='POST':
+        id=empleados_form.id.data
+        empl=Empleados.query.get(id)
+        db.session.delete(empl)
+        db.session.commit()
+        return redirect('tableEmpleados')
+    
+    return render_template("eliminar.html",form=empleados_form)
+
+@app.route("/modificar",methods=["GET","POST"])
+def modificar():
+    empleados_form=forms.EmpleadosForm(request.form)
+    if request.method=='GET':
+        id=request.args.get('id')
+        empleado1=db.session.query(Empleados).filter(Empleados.id==id).first()
+        empleados_form.id.data=request.args.get('id')
+        empleados_form.nombre.data=empleado1.nombre
+        empleados_form.email.data=empleado1.email
+        empleados_form.telefono.data=empleado1.telefono
+        empleados_form.direccion.data=empleado1.direccion
+        empleados_form.sueldo.data=empleado1.sueldo
+    if request.method=='POST':
+        id=empleados_form.id.data
+        empleado1=db.session.query(Empleados).filter(Empleados.id==id).first()
+        empleado1.nombre=empleados_form.nombre.data
+        empleado1.email=empleados_form.email.data
+        empleado1.telefono=empleados_form.email.data
+        empleado1.direccion=empleados_form.direccion.data
+        empleado1.sueldo=empleados_form.sueldo.data
+        db.session.add(empleado1)
+        db.session.commit()
+        return redirect('tableEmpleados')
+    
+    return render_template("modificar.html",form=empleados_form)
+
 #Funcion que nos permite manejar el error 404 y mandar lo que queramos con el html
 @app.errorhandler(404)
 def page_not_found(e):

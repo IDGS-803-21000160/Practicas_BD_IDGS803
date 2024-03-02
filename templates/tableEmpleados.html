@@ -13,6 +13,7 @@ render_field%}
           <th>Telefono</th>
           <th>Direccion</th>
           <th>Sueldo</th>
+          <th>Eliminar</th>
           <th>Modificar</th>
         </tr>
       </thead>
@@ -25,16 +26,14 @@ render_field%}
           <td>{{emplead.direccion}}</td>
           <td>{{emplead.sueldo}}</td>
           <td>
-            <a
-              href="eliminar.html?id={{emplead.id}}"
-              class="btn btb-danger"
-            ></a>
+            <a href="eliminar?id={{emplead.id}}" class="btn btb-danger"
+              >Eliminar</a
+            >
           </td>
           <td>
-            <a
-              href="modificar.html?id={{emplead.id}}"
-              class="btn btb-warning"
-            ></a>
+            <a href="modificar?id={{emplead.id}}" class="btn btb-warning"
+              >Modificar</a
+            >
           </td>
         </tr>
         {%endfor%}
