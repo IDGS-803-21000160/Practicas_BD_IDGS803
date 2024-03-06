@@ -20,4 +20,12 @@ class EmpleadosForm(Form):
     sueldo=IntegerField('sueldo',[
         validators.DataRequired(message='El campo es requerido')
     ])
-    
+
+class FormPizzas(Form):
+    id=IntegerField('id')
+    tamanioPizza= RadioField('', choices=[(0, 'Chica $40'), (1, 'Mediana $80'), (2, 'Grande $120')])
+    ingredientes= RadioField('', choices=[(0, 'Jamon $10'), (1, 'Piña $10'), (2, 'Champiñones $10')])
+    nombre=StringField('Nombre')
+    direccion=StringField('Direccion')
+    telefono=IntegerField('Telefono')
+    numPizzas=IntegerField('Num. Pizzas')
